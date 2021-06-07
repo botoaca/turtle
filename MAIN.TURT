@@ -1,0 +1,3 @@
+0 CALC 5 + 5
+5 OUT "HELLO"
+5 OUT "WORLD"
