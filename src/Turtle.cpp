@@ -14,10 +14,12 @@ void Turtle::run() {
     std::string line;
     std::ifstream input(_path);
     int lineCount = 0;
+    int argSize;
 
     while (std::getline(input, line)) { // Executes instructions for each line
         lineCount++;
-        int argSize = line[0] - '0';
+        if (line[0] != '#')
+            argSize = line[0] - '0';
 
         // CALC function
         if (line[2] == 'C' && line[3] == 'A' && line[4] == 'L' && line[5] == 'C')

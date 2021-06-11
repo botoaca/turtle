@@ -13,6 +13,8 @@ Turtle is a **toy** "programming language" made for educational purposes. Turtle
 * **CALC**: 0 CALC _<first_operand>_ + _<second_operand>_
 	* example: 0 CALC 5 + 5
 
+* You can also use a **#** in the argument size spot to mark a comment.
+
 ## Usage
 Run the `make` command then run the `build/output.exe` executable. Input the path of your `.TURT` (or any other extension) and press Enter. 
 
