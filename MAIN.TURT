@@ -1,5 +1,2 @@
-# Hello World Program
-
-0 CALC 5 + 5
-5 OUT "HELLO"
-5 OUT "WORLD"
+OUT "HELLO WORLD"
+OUT 5 + 5
