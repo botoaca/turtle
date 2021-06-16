@@ -1,2 +1,2 @@
-OUT "HELLO WORLD"
-OUT 5 + 5
+TO_BINARY "HELLO WORLD"
+OUT "The above is HELLO WORLD in Binary"

@@ -4,10 +4,10 @@
 #include <algorithm>
 #include <string>
 
-
 #define NEW_LINE "\n"
 #define D_QUOTE "\""
 #define OUT "OUT"
+#define TO_BINARY "TO_BINARY"
 
 Lexer::Lexer(std::string fileContents) {
     _fileContents = fileContents + '\n';
@@ -15,31 +15,32 @@ Lexer::Lexer(std::string fileContents) {
 
 std::vector<std::string> Lexer::lex() {
     const std::string digits[10] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-    const std::string operators[7] = { "+", "-", "*", "/", "%", "(", ")" };
+    const std::string operators[8] = { "+", "-", "*", "/", "%", "^", "(", ")" };
 
     std::vector<std::string> tokens;
     std::string token;
-    bool state = false;
-
+    
     std::string str;
+    bool strState = false;
+
     std::string exp;
-    bool isExpression = false;
+    bool expState = false;
 
     for (unsigned i = 0; i <= _fileContents.length(); i++) {
         token.push_back(_fileContents[i]);
         std::transform(token.begin(), token.end(), token.begin(), ::toupper);
 
         // SPACE
-        if (token == " " && !state)
+        if (token == " " && !strState)
             token.clear();
 
         // NEW LINE
         if (token == NEW_LINE) {
-            if (!exp.empty() && isExpression) {
+            if (!exp.empty() && expState) {
                 tokens.push_back("EXP:" + exp);
                 exp.clear();
             }
-            else if (!exp.empty() && !isExpression) {
+            else if (!exp.empty() && !expState) {
                 tokens.push_back("NUM:" + exp);
                 exp.clear();
             }
@@ -52,8 +53,14 @@ std::vector<std::string> Lexer::lex() {
             token.clear();
         }
 
+        // TO_BINARY
+        if (token == TO_BINARY) {
+            tokens.push_back(token);
+            token.clear();
+        }
+
         // NUMBER
-        for (int i = 0; i <= 10; i++) {
+        for (unsigned i = 0; i <= sizeof(digits)/sizeof(digits[0]); i++) {
             if (token == digits[i]) {
                 exp += token;
                 token.clear();
@@ -61,9 +68,9 @@ std::vector<std::string> Lexer::lex() {
         }
 
         // OPERATORS
-        for (int i = 0; i <= 5; i++) {
+        for (unsigned i = 0; i <= sizeof(operators)/sizeof(operators[0]); i++) {
             if (token == operators[i]) {
-                isExpression = true;
+                expState = true;
                 exp += token;
                 token.clear();
             }
@@ -71,16 +78,16 @@ std::vector<std::string> Lexer::lex() {
 
         // DOUBLE QUOTE
         if (token == D_QUOTE) {
-            if (!state) state = true;
-            else if (state) {
+            if (!strState) strState = true;
+            else if (strState) {
                 tokens.push_back("STR:" + str + D_QUOTE);
                 str.clear();
-                state = false;
+                strState = false;
                 token.clear();
             }
         }
 
-        if (state) {
+        if (strState) {
             str += _fileContents[i];
             token.clear();
         }
