@@ -40,7 +40,7 @@ std::vector<std::string> Lexer::lex() {
                 tokens.push_back("EXP:" + exp);
                 exp.clear();
             }
-            else if (!exp.empty() && !expState) {
+            if (!exp.empty() && !expState) {
                 tokens.push_back("NUM:" + exp);
                 exp.clear();
             }
@@ -94,7 +94,7 @@ std::vector<std::string> Lexer::lex() {
     }
 
     // DEBUG: DISPLAY TOKENS
-    //
+    // 
     // std::cout << "tokens = { ";
     // for (std::string i : tokens) {
     //     std::cout << i << ", ";

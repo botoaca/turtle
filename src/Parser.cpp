@@ -10,9 +10,7 @@ Parser::Parser(std::vector<std::string> tokens) {
 
 void Parser::parse() {
     unsigned it = 0;
-    while (it < _tokens.size()) {
-
-            
+    while (it < _tokens.size()) {            
         if (!((it + 1) >= _tokens.size())) {
             // Output String
             if (_tokens[it] + " " + _tokens[it + 1].substr(0, 3) == "OUT STR") {
