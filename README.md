@@ -6,8 +6,14 @@ Turtle is a **toy** "programming language" made for educational purposes. Turtle
 * **OUT**: OUT _"\<string>"_ *or* OUT <number> *or* OUT <mathematical_expression>
   * example: OUT "HELLO" *or* OUT 5 *or* OUT (2+2)*3]
 * **TO_BINARY**: TO_BINARY _"\<string>"_
-  * info: This instruction prints out the string in binary.
+  * info: This instruction converts the string in 8-bit binary sequences.
   * example: TO_BINARY "WORLD"
+* **PARENTHESE_ENCODE**: PARENTHESE_ENCODE _"\<string>"_
+  * info: This instruction encodes the string to the "Parenthese" joke cipher.
+  * example: PARENTHESE_ENCODE "TEST"
+* **PARENTHESE_DECODE**: PARENTHESE_DECODE _"\<string>"_
+  * info: This instruction decodes the string from the "Parenthese" joke cipher.
+  * example: PARENTHESE_DECODE "))))))))))))))))))))()))))()))))))))))))))))))())))))))))))))))))))("
 
 ### Note: 
 Instructions are **not** case sensitive: `out` will work just as well as `OUT`.

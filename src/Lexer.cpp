@@ -8,6 +8,8 @@
 #define D_QUOTE "\""
 #define OUT "OUT"
 #define TO_BINARY "TO_BINARY"
+#define P_ENCODE "PARENTHESE_ENCODE"
+#define P_DECODE "PARENTHESE_DECODE"
 
 Lexer::Lexer(std::string fileContents) {
     _fileContents = fileContents + '\n';
@@ -55,6 +57,18 @@ std::vector<std::string> Lexer::lex() {
 
         // TO_BINARY
         if (token == TO_BINARY) {
+            tokens.push_back(token);
+            token.clear();
+        }
+
+        // PARENTHESE_ENCODE
+        if (token == P_ENCODE) {
+            tokens.push_back(token);
+            token.clear();
+        }
+
+        // PARENTHESE_DECODE
+        if (token == P_DECODE) {
             tokens.push_back(token);
             token.clear();
         }
