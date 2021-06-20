@@ -5,10 +5,22 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <unordered_map>
 
 Parser::Parser(std::vector<std::string> tokens) {
     _tokens = tokens;
 };
+
+void Parser::varAssign(std::string varName, std::string varValue) {
+    _symbols[varName.substr(4)] = varValue;
+}
+
+std::string Parser::varGet(std::string varName) {
+    if (_symbols.count(varName)){
+        return _symbols[varName].substr(2);}
+    else
+        return "Undefined variable.";
+}
 
 void Parser::parse() {
     unsigned it = 0;
@@ -41,6 +53,12 @@ void Parser::parse() {
         if (_tokens[it] + " " + _tokens[it + 1].substr(0, 3) == "OUT EXP") {
             char* exp = (char*) _tokens[it + 1].substr(4).c_str();
             std::cout << te_interp(exp, 0) << "\n";
+            it += 2;
+        }
+
+        // Output Variable
+        if (_tokens[it] + " " + _tokens[it + 1].substr(0, 3) == "OUT VAR") {
+            std::cout << varGet(_tokens[it + 1].substr(4)) << "\n";
             it += 2;
         }
 
@@ -81,5 +99,38 @@ void Parser::parse() {
             std::cout << util_parenthese_decode(str) << "\n";
             it += 3;
         }
+
+        // String Variable
+        if (_tokens[it].substr(0, 3) + " " + _tokens[it + 1] + " " + _tokens[it + 2].substr(0, 3) == "VAR EQUALS STR") {
+            varAssign(_tokens[it], _tokens[it + 2]);
+            it += 3;
+        }
+
+        // Num Variable
+        if (_tokens[it].substr(0, 3) + " " + _tokens[it + 1] + " " + _tokens[it + 2].substr(0, 3) == "VAR EQUALS NUM") {
+            varAssign(_tokens[it], _tokens[it + 2]);
+            it += 3;
+        }
+
+        // Expression Variable
+        if (_tokens[it].substr(0, 3) + " " + _tokens[it + 1] + " " + _tokens[it + 2].substr(0, 3) == "VAR EQUALS EXP") {
+            char* exp = (char*) _tokens[it + 2].substr(4).c_str();
+            std::string evaluatedExp = std::to_string(te_interp(exp, 0));
+            varAssign(_tokens[it], "NUM:" + evaluatedExp);
+            it += 3;
+        }
+
+        // Variable = Variable
+        if (_tokens[it].substr(0, 3) + " " + _tokens[it + 1] + " " + _tokens[it + 2].substr(0, 3) == "VAR EQUALS VAR") {
+            varAssign(_tokens[it], varGet(_tokens[it + 2].substr(4)));
+            it += 3;
+        }
     }
+    
+    // DEBUG: DISPLAY SYMBOLS
+    // std::cout << "symbols = { ";
+    // for (auto const &pair : _symbols) {
+    //     std::cout << " { " << pair.first << " : " << pair.second << " }, "; 
+    // }
+    // std::cout << "}\n";
 }

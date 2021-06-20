@@ -1,6 +1,6 @@
-CLEAR
-OUT "T"
-CLEAR
-OUT "TT"
-CLEAR
-OUT "TTT"
+@str = "hello world"
+@num = 5
+@exp = 5 ^ 5 + 1
+
+@str_copy = @str
+out @str_copy

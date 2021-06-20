@@ -23,6 +23,16 @@ Turtle is a **toy** "programming language" made for educational purposes. Turtle
   * info: This instruction decodes the string from the "Parenthese" joke cipher.
   * example: PARENTHESE_DECODE "))))))))))))))))))))()))))()))))))))))))))))))())))))))))))))))))))("
 
+## Variables
+Declaration example: `$variable <string>` *or* `$variable <number>` *or* `$variable <mathematical_expression>`
+You can also declare a variable's value as another variable:
+*TEST.TURT*
+```
+@str = "hello world"
+@str_copy = @str
+out @str_copy
+```
+
 ### Note: 
 Instructions are **not** case sensitive: `out` will work just as well as `OUT`.
 
