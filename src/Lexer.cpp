@@ -10,6 +10,7 @@
 #define TO_BINARY "TO_BINARY"
 #define P_ENCODE "PARENTHESE_ENCODE"
 #define P_DECODE "PARENTHESE_DECODE"
+#define CLEAR_SCREEN "CLEAR"
 
 Lexer::Lexer(std::string fileContents) {
     _fileContents = fileContents + '\n';
@@ -73,6 +74,12 @@ std::vector<std::string> Lexer::lex() {
             token.clear();
         }
 
+        // CLEAR
+        if (token == CLEAR_SCREEN)  {
+            tokens.push_back(token);
+            token.clear();
+        }
+
         // NUMBER
         for (unsigned i = 0; i <= sizeof(digits)/sizeof(digits[0]); i++) {
             if (token == digits[i]) {
@@ -108,7 +115,6 @@ std::vector<std::string> Lexer::lex() {
     }
 
     // DEBUG: DISPLAY TOKENS
-    // 
     // std::cout << "tokens = { ";
     // for (std::string i : tokens) {
     //     std::cout << i << ", ";

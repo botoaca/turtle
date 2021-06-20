@@ -3,14 +3,22 @@
 Turtle is a **toy** "programming language" made for educational purposes. Turtle should not be used for anything more than just playing around. Any file extension works as long as the code inside is valid (though I've used `.TURT`).
 
 ## Implemented Instructions
-* **OUT**: OUT _"\<string>"_ *or* OUT <number> *or* OUT <mathematical_expression>
+* **CLEAR**: CLEAR
+  * info: This instruction clears the screen.
+  * example: CLEAR
+
+* **OUT**: OUT _"\<string>"_ *or* OUT  _"\<number>"_ *or* OUT <mathematical_expression>
+  * info: This instruction prints to the screen.
   * example: OUT "HELLO" *or* OUT 5 *or* OUT (2+2)*3]
+
 * **TO_BINARY**: TO_BINARY _"\<string>"_
   * info: This instruction converts the string in 8-bit binary sequences.
   * example: TO_BINARY "WORLD"
+
 * **PARENTHESE_ENCODE**: PARENTHESE_ENCODE _"\<string>"_
   * info: This instruction encodes the string to the "Parenthese" joke cipher.
   * example: PARENTHESE_ENCODE "TEST"
+
 * **PARENTHESE_DECODE**: PARENTHESE_DECODE _"\<string>"_
   * info: This instruction decodes the string from the "Parenthese" joke cipher.
   * example: PARENTHESE_DECODE "))))))))))))))))))))()))))()))))))))))))))))))())))))))))))))))))))("

@@ -3,6 +3,15 @@
 #include <bitset>
 #include <string>
 
+void util_clearscreen() {
+    #include <stdlib.h>
+    #ifdef _WIN32
+    system("cls");
+    #else
+    system("clear");
+    #endif
+}
+
 std::string util_tobinary(std::string s) {
     std::string converted;
     for (unsigned i = 0; i < s.size(); i++) {

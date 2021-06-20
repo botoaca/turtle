@@ -5,6 +5,8 @@
 #include <bitset>
 #include <string>
 
+void util_clearscreen();
+
 std::string util_tobinary(std::string);
 std::string util_parenthese_encode(std::string);
 std::string util_parenthese_decode(std::string);
