@@ -140,9 +140,5 @@ void Parser::parse() {
     }
     
     // DEBUG: DISPLAY SYMBOLS
-    // std::cout << "symbols = { ";
-    // for (auto const &pair : _symbols) {
-    //     std::cout << " { " << pair.first << " : " << pair.second << " }, "; 
-    // }
-    // std::cout << "}\n";
+    // util_visualize_symbols(_symbols);
 }

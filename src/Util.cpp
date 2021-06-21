@@ -1,5 +1,7 @@
 #include "include/Util.h"
 #include <iostream>
+#include <vector>
+#include <unordered_map>
 #include <bitset>
 #include <string>
 
@@ -47,4 +49,20 @@ std::string util_parenthese_decode(std::string s) {
         }
     }
     return converted;
+}
+
+void util_visualize_tokens(std::vector<std::string> v) {
+    std::cout << "tokens = { ";
+    for (std::string i : v) {
+        std::cout << i << ", ";
+    }
+    std::cout << "}\n";
+}
+
+void util_visualize_symbols(std::unordered_map<std::string, std::string> um) {
+    std::cout << "symbols = { ";
+    for (auto const &pair : um) {
+        std::cout << " { " << pair.first << " : " << pair.second << " }, "; 
+    }
+    std::cout << "}\n";
 }

@@ -1,4 +1,5 @@
 #include "include/Lexer.h"
+#include "include/Util.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -160,12 +161,8 @@ std::vector<std::string> Lexer::lex() {
         }
     }
 
-    // DEBUG: DISPLAY TOKENS
-    // std::cout << "tokens = { ";
-    // for (std::string i : tokens) {
-    //     std::cout << i << ", ";
-    // }
-    // std::cout << "}\n";
+    // DEBUG VISUALIZE TOKENS
+    // util_visualize_tokens(tokens);
 
     return tokens;
 }
