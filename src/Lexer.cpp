@@ -15,7 +15,7 @@
 #define EQUALS "="
 
 Lexer::Lexer(std::string fileContents) {
-    _fileContents = fileContents + '\n';
+    _fileContents = fileContents;
 };
 
 std::vector<std::string> Lexer::lex() {
@@ -34,17 +34,17 @@ std::vector<std::string> Lexer::lex() {
     std::string var;
     bool varStart = false;
 
-    for (unsigned i = 0; i <= _fileContents.length(); i++) {
-        token.push_back(_fileContents[i]);
-        std::transform(token.begin(), token.end(), token.begin(), ::toupper);
+    for (unsigned i = 0; i < _fileContents.length(); i++) {
+        token.push_back(::toupper(_fileContents[i]));
 
         // SPACE
-        if (token == " " && !strState)
+        if (token == " " && !strState) {
             token.clear();
+            continue;
+        }
 
         // NEW LINE
         if (token == NEW_LINE) {
-            // Number and Expression
             if (!exp.empty() && expState) {
                 tokens.push_back("EXP:" + exp);
                 exp.clear();
@@ -59,6 +59,7 @@ std::vector<std::string> Lexer::lex() {
                 varStart = false;
             }
             token.clear();
+            continue;
         }
 
         // DEC
@@ -70,63 +71,73 @@ std::vector<std::string> Lexer::lex() {
             }
             tokens.push_back("EQUALS");
             token.clear();
+            continue;
         }
 
         if (token == DECLARE && !strState) {
             varStart = true;
             var += token;
             token.clear();
+            continue;
         }
 
         if (varStart) {
             var += token;
             token.clear();
+            continue;
         }
 
         // OUT
         if (token == OUT) {
             tokens.push_back(token);
             token.clear();
+            continue;
         }
 
         // TO_BINARY
         if (token == TO_BINARY) {
             tokens.push_back(token);
             token.clear();
+            continue;
         }
 
         // PARENTHESE_ENCODE
         if (token == P_ENCODE) {
             tokens.push_back(token);
             token.clear();
+            continue;
         }
 
         // PARENTHESE_DECODE
         if (token == P_DECODE) {
             tokens.push_back(token);
             token.clear();
+            continue;
         }
 
         // CLEAR
         if (token == CLEAR_SCREEN)  {
             tokens.push_back(token);
             token.clear();
+            continue;
         }
 
         // NUMBER
-        for (unsigned i = 0; i <= sizeof(digits)/sizeof(digits[0]); i++) {
+        for (unsigned i = 0; i < sizeof(digits)/sizeof(digits[0]); i++) {
             if (token == digits[i]) {
                 exp += token;
                 token.clear();
+                continue;
             }
         }
 
         // OPERATORS
-        for (unsigned i = 0; i <= sizeof(operators)/sizeof(operators[0]); i++) {
+        for (unsigned i = 0; i < sizeof(operators)/sizeof(operators[0]); i++) {
             if (token == operators[i]) {
                 expState = true;
                 exp += token;
                 token.clear();
+                continue;
             }
         }
 
@@ -138,21 +149,23 @@ std::vector<std::string> Lexer::lex() {
                 str.clear();
                 strState = false;
                 token.clear();
+                continue;
             }
         }
 
         if (strState) {
             str += _fileContents[i];
             token.clear();
+            continue;
         }
     }
 
     // DEBUG: DISPLAY TOKENS
-    // std::cout << "tokens = { ";
-    // for (std::string i : tokens) {
-    //     std::cout << i << ", ";
-    // }
-    // std::cout << "}\n";
+    std::cout << "tokens = { ";
+    for (std::string i : tokens) {
+        std::cout << i << ", ";
+    }
+    std::cout << "}\n";
 
     return tokens;
 }

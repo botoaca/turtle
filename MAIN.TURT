@@ -1,6 +1,8 @@
-@str = "hello world"
-@num = 5
-@exp = 5 ^ 5 + 1
-
-@str_copy = @str
-out @str_copy
+out "A"
+out "A"
+out "A"
+@var = "test"
+@v2 = 5/5
+@v3 = @v2
+out @var
+out @v3
