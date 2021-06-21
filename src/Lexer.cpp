@@ -15,7 +15,7 @@
 #define EQUALS "="
 
 Lexer::Lexer(std::string fileContents) {
-    _fileContents = fileContents;
+    _fileContents = fileContents + '\n';
 };
 
 std::vector<std::string> Lexer::lex() {
@@ -161,11 +161,11 @@ std::vector<std::string> Lexer::lex() {
     }
 
     // DEBUG: DISPLAY TOKENS
-    std::cout << "tokens = { ";
-    for (std::string i : tokens) {
-        std::cout << i << ", ";
-    }
-    std::cout << "}\n";
+    // std::cout << "tokens = { ";
+    // for (std::string i : tokens) {
+    //     std::cout << i << ", ";
+    // }
+    // std::cout << "}\n";
 
     return tokens;
 }

@@ -15,7 +15,7 @@ void Turtle::run() {
     std::stringstream contents;
     contents << input.rdbuf();
 
-    Lexer lexer(contents.str() + '\n');
+    Lexer lexer(contents.str());
     std::vector<std::string> tokens = lexer.lex();
 
     Parser parser(tokens);
