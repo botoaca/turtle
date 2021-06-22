@@ -6,6 +6,8 @@
 #include <string>
 #include <algorithm>
 #include <unordered_map>
+#include <thread>
+#include <chrono>
 
 Parser::Parser(std::vector<std::string> tokens) {
     _tokens = tokens;
@@ -49,6 +51,13 @@ void Parser::parse() {
         //      2       TOKEN       INSTRUCTIONS        //
         //////////////////////////////////////////////////
         if (it + 1 < _tokens.size()) {
+            // Wait
+            if (_tokens.at(it) + " " + _tokens.at(it + 1).substr(0, 3) == "WAIT NUM" && condition) {
+                std::this_thread::sleep_for(std::chrono::seconds(std::stoi(_tokens.at(it + 1).substr(4))));
+                it += 2;
+                continue;
+            }
+
             // Output String
             if (_tokens.at(it) + " " + _tokens.at(it + 1).substr(0, 3) == "OUT STR" && condition) {
                 std::string str = util_truncate_string(_tokens.at(it + 1).substr(4));

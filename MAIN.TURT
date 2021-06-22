@@ -2,4 +2,5 @@ clear
 if 1 is 1 then
     in "test" @var
 endif
+wait 5
 out @var
