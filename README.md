@@ -7,6 +7,10 @@ Turtle is a **toy** "programming language" made for educational purposes. Turtle
   * info: This instruction clears the screen.
   * example: CLEAR
 
+* **WAIT**: WAIT _"\<number>"_
+  * info: This instruction makes the program wait for _"\<number>"_ seconds.
+  * example: WAIT 5
+
 * **OUT**: OUT _"\<string>"_ *or* OUT  _"\<number>"_ *or* OUT _<mathematical_expression>_
   * info: This instruction prints to the screen.
   * example: OUT "HELLO" *or* OUT 5 *or* OUT (2+2)*3

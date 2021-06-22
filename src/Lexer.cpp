@@ -19,6 +19,7 @@
 #define IS "IS"
 #define THEN "THEN"
 #define ENDIF "ENDIF"
+#define WAIT "WAIT"
 
 Lexer::Lexer(std::string fileContents) {
     _fileContents = fileContents + '\n';
@@ -140,6 +141,7 @@ std::vector<std::string> Lexer::lex() {
             continue;
         }
 
+        // IN
         if (token == IN) {
             tokens.push_back(token);
             token.clear();
@@ -169,6 +171,13 @@ std::vector<std::string> Lexer::lex() {
 
         // CLEAR
         if (token == CLEAR_SCREEN)  {
+            tokens.push_back(token);
+            token.clear();
+            continue;
+        }
+
+        // WAIT
+        if (token == WAIT) {
             tokens.push_back(token);
             token.clear();
             continue;
