@@ -34,12 +34,7 @@ void Parser::parse() {
 
         // Output String
         if (_tokens[it] + " " + _tokens[it + 1].substr(0, 3) == "OUT STR") {
-            std::string str = _tokens[it + 1].substr(4);
-            if (str[0] && str[str.size() - 1]) {
-                str.erase(0, 1);
-                str.erase(str.size() - 1);
-            }
-
+            std::string str = util_truncate_string(_tokens[it + 1].substr(4));
             std::cout << str << "\n";
             it += 2;
             continue;
@@ -67,14 +62,21 @@ void Parser::parse() {
             continue;
         }
 
+        if (_tokens[it] + " " + _tokens[it + 1].substr(0, 3) + " " + _tokens[it + 2].substr(0, 3) == "IN STR VAR") {
+            std::string in;
+            std::cout << util_truncate_string(_tokens[it + 1].substr(4)) << "\n";
+
+            std::cin.ignore();
+            std::getline(std::cin, in);
+            _symbols[_tokens[it + 2].substr(4)] = "STR:\"" + in + "\"";
+
+            it  += 3;
+            continue;
+        }
+
         // To Binary
         if (_tokens[it] + " " + _tokens[it + 1] + " " + _tokens[it + 2].substr(0, 3) == "OUT TO_BINARY STR") {
-            std::string str = _tokens[it + 2].substr(4);
-            if (str[0] && str[str.size() - 1]) {
-                str.erase(0, 1);
-                str.erase(str.size() - 1);
-            }
-
+            std::string str = util_truncate_string(_tokens[it + 2].substr(4));
             std::cout << util_tobinary(str) << "\n";
             it += 3;
             continue;
@@ -82,13 +84,8 @@ void Parser::parse() {
 
         // Parenthese Encode
         if (_tokens[it] + " " + _tokens[it + 1] + " " + _tokens[it + 2].substr(0, 3) == "OUT PARENTHESE_ENCODE STR") {
-            std::string str = _tokens[it + 2].substr(4);
-            if (str[0] && str[str.size() - 1]) {
-                str.erase(0, 1);
-                str.erase(str.size() - 1);
-            }
+            std::string str = util_truncate_string(_tokens[it + 2].substr(4));
             std::transform(str.begin(), str.end(), str.begin(), ::toupper);
-
             std::cout << util_parenthese_encode(str) << "\n";
             it += 3;
             continue;
@@ -96,13 +93,8 @@ void Parser::parse() {
 
         // Parenthese Decode
         if (_tokens[it] + " " + _tokens[it + 1] + " " + _tokens[it + 2].substr(0, 3) == "OUT PARENTHESE_DECODE STR") {
-            std::string str = _tokens[it + 2].substr(4);
-            if (str[0] && str[str.size() - 1]) {
-                str.erase(0, 1);
-                str.erase(str.size() - 1);
-            }
+            std::string str = util_truncate_string(_tokens[it + 2].substr(4));
             std::transform(str.begin(), str.end(), str.begin(), ::toupper);
-
             std::cout << util_parenthese_decode(str) << "\n";
             it += 3;
             continue;

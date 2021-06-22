@@ -51,6 +51,14 @@ std::string util_parenthese_decode(std::string s) {
     return converted;
 }
 
+std::string util_truncate_string(std::string s) {
+    if (s[0] && s[s.size() - 1]) {
+        s.erase(0, 1);
+        s.erase(s.size() - 1);
+    }
+    return s;
+}
+
 void util_visualize_tokens(std::vector<std::string> v) {
     std::cout << "tokens = { ";
     for (std::string i : v) {

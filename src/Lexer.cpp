@@ -8,6 +8,7 @@
 #define NEW_LINE "\n"
 #define D_QUOTE "\""
 #define OUT "OUT"
+#define IN "IN"
 #define TO_BINARY "TO_BINARY"
 #define P_ENCODE "PARENTHESE_ENCODE"
 #define P_DECODE "PARENTHESE_DECODE"
@@ -95,6 +96,12 @@ std::vector<std::string> Lexer::lex() {
             continue;
         }
 
+        if (token == IN) {
+            tokens.push_back(token);
+            token.clear();
+            continue;
+        }
+
         // TO_BINARY
         if (token == TO_BINARY) {
             tokens.push_back(token);
@@ -161,8 +168,8 @@ std::vector<std::string> Lexer::lex() {
         }
     }
 
-    // DEBUG VISUALIZE TOKENS
-    // util_visualize_tokens(tokens);
+    // DEBUG: VISUALIZE TOKENS
+    util_visualize_tokens(tokens);
 
     return tokens;
 }

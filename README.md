@@ -7,9 +7,13 @@ Turtle is a **toy** "programming language" made for educational purposes. Turtle
   * info: This instruction clears the screen.
   * example: CLEAR
 
-* **OUT**: OUT _"\<string>"_ *or* OUT  _"\<number>"_ *or* OUT <mathematical_expression>
+* **OUT**: OUT _"\<string>"_ *or* OUT  _"\<number>"_ *or* OUT _<mathematical_expression>_
   * info: This instruction prints to the screen.
   * example: OUT "HELLO" *or* OUT 5 *or* OUT (2+2)*3]
+
+* **IN**: IN _"\<string>"_ _\<variable>_
+  * info: This instruction prints a string to the screen then waits for input and stores it to a variable.
+  * example: IN "What is your name?" @name
 
 * **TO_BINARY**: TO_BINARY _"\<string>"_
   * info: This instruction converts the string in 8-bit binary sequences.
@@ -24,8 +28,9 @@ Turtle is a **toy** "programming language" made for educational purposes. Turtle
   * example: PARENTHESE_DECODE "))))))))))))))))))))()))))()))))))))))))))))))())))))))))))))))))))("
 
 ## Variables
-Declaration example: `$variable <string>` *or* `$variable <number>` *or* `$variable <mathematical_expression>`
+Declaration example: `@variable <string>` *or* `@variable <number>` *or* `@variable <mathematical_expression>`
 You can also declare a variable's value as another variable:
+
 *TEST.TURT*
 ```
 @str = "hello world"
@@ -42,8 +47,8 @@ Run the `make` command then run the `build/output.exe` executable. Input the pat
 ## Example Program
 *(MAIN.TURT)*
 ```
-OUT "HELLO WORLD"
-OUT 5+5^5*(2+2)
+out "hello world"
+out 5+5^5*(2+2)
 ```
 
 ## Limitations
