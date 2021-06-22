@@ -9,7 +9,7 @@ Turtle is a **toy** "programming language" made for educational purposes. Turtle
 
 * **OUT**: OUT _"\<string>"_ *or* OUT  _"\<number>"_ *or* OUT _<mathematical_expression>_
   * info: This instruction prints to the screen.
-  * example: OUT "HELLO" *or* OUT 5 *or* OUT (2+2)*3]
+  * example: OUT "HELLO" *or* OUT 5 *or* OUT (2+2)*3
 
 * **IN**: IN _"\<string>"_ _\<variable>_
   * info: This instruction prints a string to the screen then waits for input and stores it to a variable.
@@ -31,6 +31,13 @@ Turtle is a **toy** "programming language" made for educational purposes. Turtle
 Declaration example: `@variable <string>` *or* `@variable <number>` *or* `@variable <mathematical_expression>`
 You can also declare a variable's value as another variable:
 
+*TEST.TURT*
+```
+@str = "hello world"
+@str_copy = @str
+out @str_copy
+```
+
 ## If Statements
 Syntax:
 
@@ -41,18 +48,14 @@ if 1 is 1 then
 endif
 ```
 
-*TEST.TURT*
-```
-@str = "hello world"
-@str_copy = @str
-out @str_copy
-```
-
 ### Note: 
 Instructions are **not** case sensitive: `out` will work just as well as `OUT`.
 
 ## Usage
-Run the `make` command then run the `build/output.exe` executable. Input the path of your `.TURT` (or any other extension) and press Enter. 
+Run the `make` command then run the `build/output.exe` executable. Input the path of your `.TURT` (or any other extension) and press Enter.
+
+## Command Line Arguments
+You can use a command such as `build/output.exe main.turt` to give a code file path. If no arguments are given, the program will ask you for a path.
 
 ## Example Program
 *(MAIN.TURT)*
