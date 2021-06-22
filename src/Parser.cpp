@@ -46,7 +46,7 @@ void Parser::parse() {
         }
 
         //////////////////////////////////////////////////
-        //      1       TOKEN       INSTRUCTIONS        //
+        //      2       TOKEN       INSTRUCTIONS        //
         //////////////////////////////////////////////////
         if (it + 1 < _tokens.size()) {
             // Output String
