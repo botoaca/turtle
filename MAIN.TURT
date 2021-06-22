@@ -1,2 +1,5 @@
-in "input" @test
-out @test
+clear
+if 1 is 1 then
+    in "test" @var
+endif
+out @var

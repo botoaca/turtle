@@ -15,6 +15,10 @@
 #define CLEAR_SCREEN "CLEAR"
 #define DECLARE "@"
 #define EQUALS "="
+#define IF "IF"
+#define IS "IS"
+#define THEN "THEN"
+#define ENDIF "ENDIF"
 
 Lexer::Lexer(std::string fileContents) {
     _fileContents = fileContents + '\n';
@@ -64,14 +68,21 @@ std::vector<std::string> Lexer::lex() {
             continue;
         }
 
-        // DEC
+        // EQUALS
         if (token == EQUALS && !strState) {
+            if (!exp.empty() && !expState) {
+                tokens.push_back("NUM:" + exp);
+                exp.clear();
+            }
             if (!var.empty()) {
                 tokens.push_back("VAR:" + var);
                 var.clear();
                 varStart = false;
             }
-            tokens.push_back("EQUALS");
+            if (tokens.back() == "EQUALS") {
+                tokens.back() = IS;
+                token.clear();
+            } else tokens.push_back("EQUALS");
             token.clear();
             continue;
         }
@@ -85,6 +96,39 @@ std::vector<std::string> Lexer::lex() {
 
         if (varStart) {
             var += token;
+            token.clear();
+            continue;
+        }
+
+        // IF
+        if (token == ENDIF) {
+            tokens.push_back(token);
+            token.clear();
+            continue;
+        }
+
+        if (token == IF) {
+            tokens.push_back(token);
+            token.clear();
+            continue;
+        }
+
+        if (token == IS) {
+            if (!exp.empty() && !expState) {
+                tokens.push_back("NUM:" + exp);
+                exp.clear();
+            }
+            tokens.push_back(token);
+            token.clear();
+            continue;
+        }
+
+        if (token == THEN) {
+            if (!exp.empty() && !expState) {
+                tokens.push_back("NUM:" + exp);
+                exp.clear();
+            }
+            tokens.push_back(token);
             token.clear();
             continue;
         }
@@ -169,7 +213,7 @@ std::vector<std::string> Lexer::lex() {
     }
 
     // DEBUG: VISUALIZE TOKENS
-    util_visualize_tokens(tokens);
+    // util_visualize_tokens(tokens);
 
     return tokens;
 }
