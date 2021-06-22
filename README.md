@@ -31,6 +31,16 @@ Turtle is a **toy** "programming language" made for educational purposes. Turtle
 Declaration example: `@variable <string>` *or* `@variable <number>` *or* `@variable <mathematical_expression>`
 You can also declare a variable's value as another variable:
 
+## If Statements
+Syntax:
+
+*IF.TURT*
+```
+if 1 is 1 then
+  out "it was 1!"
+endif
+```
+
 *TEST.TURT*
 ```
 @str = "hello world"
