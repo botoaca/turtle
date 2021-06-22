@@ -32,7 +32,7 @@ Turtle is a **toy** "programming language" made for educational purposes. Turtle
   * example: PARENTHESE_DECODE "))))))))))))))))))))()))))()))))))))))))))))))())))))))))))))))))))("
 
 ## Variables
-Declaration example: `@variable <string>` *or* `@variable <number>` *or* `@variable <mathematical_expression>`
+Declaration example: `@variable_name <string>` *or* `@variable_name <number>` *or* `@variable_name <mathematical_expression>`
 You can also declare a variable's value as another variable:
 
 *TEST.TURT*
