@@ -46,8 +46,6 @@ def scan(filepath: str) -> None:
             f.write(f"{line}\n")
 
 def main() -> None:
-    if not os.path.isdir("input"):
-        os.mkdir("input")
     if not os.path.isdir("output"):
         os.mkdir("output")
     args: str = get_commandline_args()

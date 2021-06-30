@@ -69,8 +69,6 @@ def generate(file_name: str, lines: str, username: str, institute: str) -> Image
     return image
 
 def main() -> None:
-    if not os.path.isdir("input"):
-        os.mkdir("input")
     if not os.path.isdir("output"):
         os.mkdir("output")
     args: str = get_commandline_args()

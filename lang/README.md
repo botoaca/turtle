@@ -1,4 +1,4 @@
-# Turtle
+# Turtle Lang
 
 Turtle is a **toy** "programming language" made for educational purposes. Turtle should not be used for anything more than just playing around. Any file extension works as long as the code inside is valid (though I've used `.TURT`).
 
